@@ -26,7 +26,6 @@ class FileUploadController extends Controller
         $tempPath = $file->getRealPath();
         $newFileName = $name . '.' . $file->getClientOriginalExtension();
 
-        try {
             $file->move('public/uploads', $newFileName);
             $number++;
             echo '<pre>';
@@ -34,9 +33,7 @@ class FileUploadController extends Controller
             echo '</pre>';
 
             return response($request->header('host') . '/public/uploads/' . $newFileName)->cookie('number_of_uploads', $number);
-        } catch (e) {
-            return throw new Exception(e);
-        }
+
 
 //         echo '<pre>';
 //         var_dump($file);

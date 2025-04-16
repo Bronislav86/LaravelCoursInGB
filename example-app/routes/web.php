@@ -36,7 +36,11 @@ where(['id' => '[0-9]+'])->name('remove_book');
 Route::get('/upload', [App\Http\Controllers\FileUploadController::class, "index"]);
 Route::post('/upload', [App\Http\Controllers\FileUploadController::class, "upload"])->name('upload_file');
 
-Route::get('/library_user/{id}', \App\Http\Controllers\LibraryUserController::class)->where(['id' => '[0-1]+']);
+Route::get('/library_user/{id}', App\Http\Controllers\LibraryUserController::class)->where(['id' => '[0-1]+']);
 
 Route::get('/my_user', [App\Http\Controllers\MyUserController::class, "showUser"]);
 Route::get('/my_second_user', [App\Http\Controllers\MySecondUserController::class, "showUser"]);
+
+Route::get('/redirect_test', App\Http\Controllers\TestRedirectController::class);
+
+Route::get('send_file', App\Http\Controllers\SendFileController::class);
