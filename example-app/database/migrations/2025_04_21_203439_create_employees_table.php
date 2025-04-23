@@ -13,10 +13,9 @@ return new class extends Migration
 
     public function up()
         {
-            Schema::connection('second_mysql')->create('password_resets', function (Blueprint $table) {
-                $table->string('email')->index();
-                $table->string('token');
-                $table->timestamp('created_at')->nullable();
+            Schema::connection('second_mysql')->create('employees', function (Blueprint $table) {
+                $table->id();
+                $table->timestamps();
             });
         }
 
@@ -26,7 +25,7 @@ return new class extends Migration
      * @return void
      */
     public function down()
-    {
-        Schema::connection('second_mysql')->dropIfExists('password_resets');
-    }
+        {
+            Schema::connection('second_mysql')->dropIfExists('employees');
+        }
 };

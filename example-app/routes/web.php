@@ -44,3 +44,5 @@ Route::get('/my_second_user', [App\Http\Controllers\MySecondUserController::clas
 Route::get('/redirect_test', App\Http\Controllers\TestRedirectController::class);
 
 Route::get('send_file', App\Http\Controllers\SendFileController::class);
+
+Route::get('/second_books_list', App\Http\Controllers\BooksController::class);

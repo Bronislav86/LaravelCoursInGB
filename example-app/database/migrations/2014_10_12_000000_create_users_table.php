@@ -6,14 +6,14 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
+    public function __construct()
+        {
+            $this->connection = 'second_mysql';
+        }
+
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::connection('second_mysql')->create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::connection('second_mysql')->dropIfExists('users');
     }
 };
