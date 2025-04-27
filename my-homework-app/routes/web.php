@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Models\Employee;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +21,8 @@ Route::get('/', function () {
 Route::get('/userform', [App\Http\Controllers\FormProcessor::class, 'index'])->name('form_processor');
 
 Route::post('/store_form', [App\Http\Controllers\FormProcessor::class, 'store'])->name('store_form');
+
+Route::get('/test_database', function(){
+    $employee = new Employee();
+    $saved = $employee->save();
+});
