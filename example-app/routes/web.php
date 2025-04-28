@@ -46,3 +46,11 @@ Route::get('/redirect_test', App\Http\Controllers\TestRedirectController::class)
 Route::get('send_file', App\Http\Controllers\SendFileController::class);
 
 Route::get('/second_books_list', App\Http\Controllers\BooksController::class);
+
+Route::get('/main', function(){
+    return view('mainpage');
+});
+
+Route::get('/about', function(){
+    return view('aboutpage');
+});
