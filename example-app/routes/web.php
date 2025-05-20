@@ -54,3 +54,13 @@ Route::get('/main', function(){
 Route::get('/about', function(){
     return view('aboutpage');
 });
+
+Route::get('/users_list', function(){
+    $users = ["Коля", "Вася", "Петя", "Дима", "Акакий", "Демиус", "Николас"];
+
+   return view('users', ['users' => $users]);
+});
+
+Route::get('/test_dir', function(){
+   return view('testdir');
+});
