@@ -13,9 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Route::get('/test', App\Http\Controllers\TestController::class);
 
@@ -63,4 +63,16 @@ Route::get('/users_list', function(){
 
 Route::get('/test_dir', function(){
    return view('testdir');
+});
+
+Route::get('/', function () {
+    $data = ['name' => 'Коля', 'age' => 17, 'position' => 'Старший логист', 'address' => 'Rostov'];
+
+    return view('home', ['welcomeData' => $data]);
+});
+
+Route::get('/contacts', function(){
+    $data2 = ['name' => 'Коля', 'address' => 'Rostov', 'post_code' => 810315, 'email' => '', 'phone' => '+79995551122'];
+
+    return view('contacts', ['data' => $data2]);
 });
