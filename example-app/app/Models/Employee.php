@@ -12,4 +12,9 @@ class Employee extends Model
     protected $connection = 'second_mysql';
     public $timestamps = true;
     protected $fillable = ['first_name', 'age'];
+
+    protected $casts = [
+        'address' => 'array',
+        'work_data' => 'array'
+    ];
 }

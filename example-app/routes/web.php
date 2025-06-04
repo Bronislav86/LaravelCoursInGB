@@ -64,3 +64,14 @@ Route::get('/users_list', function(){
 Route::get('/test_dir', function(){
    return view('testdir');
 });
+
+Route::get('/test_request', [App\Http\Controllers\RequestTestController::class, "testRequest"]);
+
+Route::get('/test_header', [App\Http\Controllers\TestHeaderController::class, "getHeader"]);
+
+Route::get('/test_cookie', [App\Http\Controllers\TestCookieController::class, 'testCookie']);
+
+Route::get('/upload_image', [App\Http\Controllers\ImageUploadController::class, 'showForm'])->name('showForm');
+Route::post('/upload_image', [App\Http\Controllers\ImageUploadController::class, 'uploadImage'])->name('uploadImage');
+
+Route::post('/json_parse', [App\Http\Controllers\JsonParseController::class, 'parseJson']);

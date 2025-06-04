@@ -26,3 +26,12 @@ Route::get('/test_database', function(){
     $employee = new Employee();
     $saved = $employee->save();
 });
+
+Route::get('/employeeForm', [App\Http\Controllers\EmployeeController::class, 'showEmployeeForm']);
+Route::post('storeEmployee', [App\Http\Controllers\EmployeeController::class, 'store']);
+Route::get('/employee/{id}', [App\Http\Controllers\EmployeeController::class, 'update']);
+Route::put('/employee/{id}/edit', [App\Http\Controllers\EmployeeController::class, 'edit'])->name('employeeEdit');
+
+Route::get('/employees.show', function(){
+    return view('showEmployee', [$employee = 'employee']);
+})->name('employees.show');
