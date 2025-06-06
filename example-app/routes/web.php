@@ -1,6 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TestFormController;
+use App\Http\Controllers\WorkerController;
+use App\Http\Controllers\TestSecurrityController;
+use App\Http\Controllers\TestValidationController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -75,3 +80,19 @@ Route::get('/upload_image', [App\Http\Controllers\ImageUploadController::class, 
 Route::post('/upload_image', [App\Http\Controllers\ImageUploadController::class, 'uploadImage'])->name('uploadImage');
 
 Route::post('/json_parse', [App\Http\Controllers\JsonParseController::class, 'parseJson']);
+
+Route::get('/form', [TestFormController::class, 'showForm'])->name('show_form');
+Route::post('/form', [TestFormController::class, 'postForm'])->name('post_form');
+
+Route::get('/worker', [WorkerController::class, 'create'])->name('create_worker');
+Route::post('/worker', [WorkerController::class, 'store'])->name('store_worker');
+Route::get('/worker/{id?}', [WorkerController::class, 'show'])->name('show_worker');
+
+Route::post('/security_test', [TestSecurrityController::class, 'post'])->name('post_security_form');
+Route::get('/security_test', [TestSecurrityController::class, 'show'])->name('show_security_form');
+
+Route::get('/test_validation', [TestValidationController::class, 'show'])->name('show_validation_form');
+Route::post('/test_validation', [TestValidationController::class, 'post'])->name('post_validation_form');
+
+Route::get('/test_builder', [WorkerController::class, 'showForm'])->name('showForm_worker');
+Route::post('/test_builder', [WorkerController::class, 'store'])->name('formBuilder_store_worker');
