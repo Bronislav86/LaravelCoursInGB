@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 
 
+
 class TestValidationController extends Controller
 {
     public function show()

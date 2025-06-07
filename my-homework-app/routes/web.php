@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Models\Employee;
+use App\Http\Controllers\BookController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,3 +36,6 @@ Route::put('/employee/{id}/edit', [App\Http\Controllers\EmployeeController::clas
 Route::get('/employees.show', function(){
     return view('showEmployee', [$employee = 'employee']);
 })->name('employees.show');
+
+Route::get('/index', [BookController::class, 'index'])->name('index_book');
+Route::post('/index', [BookController::class, 'store'])->name('store_book');
