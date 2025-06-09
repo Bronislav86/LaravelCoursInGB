@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Models\Employee;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\ClientController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,3 +40,8 @@ Route::get('/employees.show', function(){
 
 Route::get('/index', [BookController::class, 'index'])->name('index_book');
 Route::post('/index', [BookController::class, 'store'])->name('store_book');
+
+    Route::get('/clients', [ClientController::class, 'index'])->name('show_clients');
+Route::get('/clients/{id?}', [ClientController::class, 'get'])->name('get_client');
+Route::get('/clients_form', [ClientController::class, 'create'])->name('create_client');
+Route::post('/clients_form', [ClientController::class, 'store'])->name('store_client');
