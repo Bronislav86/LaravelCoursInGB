@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Models\Employee;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\PdfGeneratorController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -45,3 +47,4 @@ Route::post('/index', [BookController::class, 'store'])->name('store_book');
 Route::get('/clients/{id?}', [ClientController::class, 'get'])->name('get_client');
 Route::get('/clients_form', [ClientController::class, 'create'])->name('create_client');
 Route::post('/clients_form', [ClientController::class, 'store'])->name('store_client');
+Route::get('/resume/{id}', [PdfGeneratorController::class, 'index'])->name('resume');

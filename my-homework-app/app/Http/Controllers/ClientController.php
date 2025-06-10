@@ -19,9 +19,10 @@ class ClientController extends Controller
 
     public function get($id)
     {
-        $client = Client::find($id);
+        $client = Client::where('id', $id)->first();
+        $clients[] = $client;
 
-        return view('clients', ['client' => $client]);
+        return view('clients', ['clients' => $clients]);
     }
 
     public function create()
@@ -32,9 +33,9 @@ class ClientController extends Controller
     public function store(Request $request)
     {
         $validation = $request->validate([
-            'name' => ['required','nullable', 'unique:clients', 'max:100'],
-            'surname' => ['required', 'nullable', 'max:100'],
-            'email' => ['required']
+            'name' => ['required','nullable', 'unique:clients', 'max:50'],
+            'surname' => ['required', 'nullable', 'max:50'],
+            'email' => ['required', 'regex:/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/']
         ]);
 
         $client = new Client($request->all());
