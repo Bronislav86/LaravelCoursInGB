@@ -26,7 +26,7 @@ Route::get('/userform', [App\Http\Controllers\FormProcessor::class, 'index'])->n
 
 Route::post('/store_form', [App\Http\Controllers\FormProcessor::class, 'store'])->name('store_form');
 
-Route::get('/test_database', function(){
+Route::get('/test_database', function () {
     $employee = new Employee();
     $saved = $employee->save();
 });
@@ -36,15 +36,19 @@ Route::post('storeEmployee', [App\Http\Controllers\EmployeeController::class, 's
 Route::get('/employee/{id}', [App\Http\Controllers\EmployeeController::class, 'update']);
 Route::put('/employee/{id}/edit', [App\Http\Controllers\EmployeeController::class, 'edit'])->name('employeeEdit');
 
-Route::get('/employees.show', function(){
+Route::get('/employees.show', function () {
     return view('showEmployee', [$employee = 'employee']);
 })->name('employees.show');
 
 Route::get('/index', [BookController::class, 'index'])->name('index_book');
 Route::post('/index', [BookController::class, 'store'])->name('store_book');
 
-    Route::get('/clients', [ClientController::class, 'index'])->name('show_clients');
+Route::get('/clients', [ClientController::class, 'index'])->name('show_clients');
 Route::get('/clients/{id?}', [ClientController::class, 'get'])->name('get_client');
 Route::get('/clients_form', [ClientController::class, 'create'])->name('create_client');
 Route::post('/clients_form', [ClientController::class, 'store'])->name('store_client');
 Route::get('/resume/{id}', [PdfGeneratorController::class, 'index'])->name('resume');
+
+Route::get('/logs', function () {
+    return view('logs');
+});

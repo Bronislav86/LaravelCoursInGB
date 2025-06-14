@@ -12,7 +12,8 @@
         "laravel/framework": "^9.0",
         "laravel/sanctum": "^2.14",
         "laravel/tinker": "^2.7",
-        "rcrowe/twigbridge": "^0.14.4"
+        "rcrowe/twigbridge": "^0.14.4",
+        "twilio/sdk": "^8.6"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.15",
