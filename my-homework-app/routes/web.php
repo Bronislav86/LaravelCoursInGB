@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Models\Employee;
+use App\Models\News;
+use App\Events\NewsHidden;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\PdfGeneratorController;
@@ -51,4 +53,22 @@ Route::get('/resume/{id}', [PdfGeneratorController::class, 'index'])->name('resu
 
 Route::get('/logs', function () {
     return view('logs');
+});
+
+Route::get('/news/create-test', function () {
+    $news = new News();
+
+    $news->title = 'Test2 news title';
+    $news->body = 'Test2 news body';
+
+    $news->save();
+    return $news;
+});
+Route::get('/news/{id}/hide', function ($id) {
+    $news = News::findOrFail($id);
+    $news->hidden = true;
+    $news->save();
+    NewsHidden::dispatch($news);
+
+    return 'News hidden';
 });

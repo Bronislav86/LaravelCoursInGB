@@ -6,6 +6,8 @@ use App\Http\Controllers\TestFormController;
 use App\Http\Controllers\WorkerController;
 use App\Http\Controllers\TestSecurrityController;
 use App\Http\Controllers\TestValidationController;
+use App\Models\News;
+use App\Events\NewsCreated;
 use Illuminate\Http\Request;
 
 
@@ -177,3 +179,24 @@ Route::get('/file_stream_download', function () {
 });
 
 Route::get('/check_di', [TestDiController::class, 'showUrl']);
+//Урок 9 - События
+Route::get('/news', function () {
+    NewsCreated::dispatch(News::first());
+    return view('welcome');
+});
+
+Route::get('/news-update-test', function () {
+    News::withoutEvents(function () {
+        News::first()->update(['title' => 'Test 2']);
+    });
+    // News::first()->update(['title' => 'testTest']);
+    return 'Updated';
+});
+
+Route::get('/news-update-test-observe', function () {
+    // News::withoutEvents(function () {
+    News::first()->update(['title' => 'New']);
+    // });
+    // News::first()->update(['title' => 'testTest']);
+    return 'Updated';
+});

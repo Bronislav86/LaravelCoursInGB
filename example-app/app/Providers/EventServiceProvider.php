@@ -2,10 +2,15 @@
 
 namespace App\Providers;
 
+use App\Events\NewsCreated;
+use App\Listeners\SendNewsCreatedNotificatoin;
+use App\Listeners\SendNewsToRemoteServer;
+use App\Observers\NewsObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Event;
+use App\Models\News;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -18,6 +23,10 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+        NewsCreated::class => [
+            SendNewsCreatedNotificatoin::class,
+            SendNewsToRemoteServer::class,
+        ]
     ];
 
     /**
@@ -27,6 +36,6 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        News::observe(NewsObserver::class);
     }
 }
