@@ -12,6 +12,6 @@ class TestModel extends Model
     protected $connection = 'second_mysql';
     protected $primaryKey = 'test_id';
     public $incrementing = true;
-    public $timestamps = true
+    public $timestamps = true;
     protected $attributes = ['test_attribute_1', 'test_attribute_2', 'test_attribute_3'];
 }

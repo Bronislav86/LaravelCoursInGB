@@ -17,6 +17,10 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+    protected $connection = 'second_mysql';
+    protected $table = 'users';
+    protected $primaryKey = 'id';
+    public $incrementing = true;
     protected $fillable = [
         'name',
         'email',
