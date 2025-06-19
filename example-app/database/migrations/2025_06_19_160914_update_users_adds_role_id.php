@@ -6,6 +6,10 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
+    public function __construct()
+    {
+        $this->connection = 'second_mysql';
+    }
     /**
      * Run the migrations.
      *
@@ -13,7 +17,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::connection('mysql2')->table('users', function (Blueprint $table) {
+        Schema::connection('second_mysql')->table('users', function (Blueprint $table) {
             $table->foreignId('role_id')->nullable();
         });
     }
@@ -25,7 +29,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::connection('mysql2')->table('users', function (Blueprint $table) {
+        Schema::connection('second_mysql')->table('users', function (Blueprint $table) {
             $table->dropColumn('role_id');
         });
     }

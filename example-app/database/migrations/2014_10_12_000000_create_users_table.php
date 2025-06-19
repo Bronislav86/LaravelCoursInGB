@@ -7,9 +7,9 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     public function __construct()
-        {
-            $this->connection = 'second_mysql';
-        }
+    {
+        $this->connection = 'second_mysql';
+    }
 
     public function up()
     {
