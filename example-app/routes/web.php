@@ -2,7 +2,10 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
+use App\Mail\BookingCompletedMailing;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
+use Telegram\Bot\Laravel\Facades\Telegram;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,3 +43,20 @@ Route::middleware('log-request')->group(function () {
 Route::get('/users', [UserController::class, 'getAllUsers']);
 
 Route::get('/users/{user}', [UserController::class, 'show']);
+
+Route::get('/booked', function () {
+    $email = 'shevchenko-bg@yandex.ru';
+    Mail::to($email)->send(new BookingCompletedMailing());
+    return response()->json(['status' => 'success']);
+});
+
+Route::get('/test-telegram', function () {
+
+    Telegram::sendMessage([
+        'chat_id' => env('TELEGRAM_CHANNEL_ID'),
+        'parse_mode' => 'html',
+        'text' => 'Произошло тестовое событие',
+    ]);
+
+    return response()->json(['status' => 'success']);
+});

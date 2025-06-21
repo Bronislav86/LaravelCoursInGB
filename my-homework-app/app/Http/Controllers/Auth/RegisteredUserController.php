@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Mail\Welcome;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
@@ -10,8 +11,10 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Log;
 
 class RegisteredUserController extends Controller
 {
@@ -49,6 +52,15 @@ class RegisteredUserController extends Controller
         event(new Registered($user));
 
         Auth::login($user);
+
+        try {
+            Mail::to('shevchenko-bg@yandex.ru')
+                ->send(new Welcome($user));
+
+            Log::info('Письмо отправлено', ['email' => $user->email]);
+        } catch (\Exception $e) {
+            Log::error('Ошибка отправки письма', ['error' => $e->getMessage()]);
+        }
 
         return redirect(RouteServiceProvider::HOME);
     }

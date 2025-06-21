@@ -9,6 +9,7 @@ use App\Http\Controllers\BookController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\PdfGeneratorController;
 use App\Http\Controllers\UserController;
+use Telegram\Bot\Laravel\Facades\Telegram;
 
 /*
 |--------------------------------------------------------------------------
@@ -86,4 +87,15 @@ Route::get('/news/{id}/hide', function ($id) {
     NewsHidden::dispatch($news);
 
     return 'News hidden';
+});
+
+Route::get('test-telegram', function () {
+    Telegram::sendMessage([
+        'chat_id' => env('TELEGRAM_CHANNEL_ID', ''),
+        'parse_mode' => 'html',
+        'text' => 'Произошло тестовое событие'
+    ]);
+    return response()->json([
+        'status' => 'success'
+    ]);
 });

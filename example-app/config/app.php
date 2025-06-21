@@ -179,6 +179,8 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\BladeHelperServiceProvider::class,
         \App\Providers\CustomLogsProvider::class,
+        Telegram\Bot\Laravel\TelegramServiceProvider::class,
+
 
     ],
 
