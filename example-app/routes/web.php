@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HotelController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Mail\BookingCompletedMailing;
@@ -60,3 +61,7 @@ Route::get('/test-telegram', function () {
 
     return response()->json(['status' => 'success']);
 });
+
+Route::get('/users', [UserController::class, 'getAllUsers']);
+
+Route::get('/users/{user}', [UserController::class, 'show']);

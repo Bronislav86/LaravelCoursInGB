@@ -46,9 +46,12 @@ class UserController extends Controller
 
     public function getAllUsers()
     {
-        $this->authorize('view-any', User::class);
+        // $this->authorize('view-any', User::class);
         // Gate::authorize('view-users');
-        return User::all();
+        // return User::all();
+        $users = User::all();
+
+        return $users;
     }
 
     public function show(User $user)
