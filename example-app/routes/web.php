@@ -3,6 +3,8 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Response;
 
 /*
 |--------------------------------------------------------------------------
