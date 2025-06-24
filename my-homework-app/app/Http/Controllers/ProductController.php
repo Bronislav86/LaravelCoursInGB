@@ -14,7 +14,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        Product::all();
+        return Product::paginate(10);
     }
 
     /**
@@ -25,18 +25,24 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $product = Product::create([
+            'sku' => $request->get('sku'),
+            'name' => $request->get('name'),
+            'price' => $request->get('price'),
+        ]);
+
+        return $product;
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  Product $product
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Product $product)
     {
-        //
+        return response()->json($product, 200);
     }
 
 
@@ -44,22 +50,28 @@ class ProductController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Product $product)
     {
-        //
+        $product->update($request->all());
+        return response()->json($product, 202);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Product $product)
     {
-        //
+        $product->delete();
+        return response()->json([
+            'status' => 'product was deleted, ok',
+            'product_name' => $product->name,
+            'timestamp' => now()->toDateTimeString(),
+        ], 200);
     }
 }
